@@ -1,0 +1,218 @@
+
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.178.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Sales_2;
+DROP TABLE Sales_2_ERROR1;
+DROP TABLE Sales_2_ERROR2;
+
+CREATE SET TABLE Sales_2 ,
+     NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+SalesOrderID11  VARCHAR(550),
+RevisionNumber11  VARCHAR(550),
+OrderDate1  VARCHAR(550),
+DueDate1  VARCHAR(550),
+ShipDate1  VARCHAR(550),
+Status1  VARCHAR(550),
+OnlineOrderFlag1  VARCHAR(550),
+SalesOrderNumber11  VARCHAR(550),
+PurchaseOrderNumber11  VARCHAR(550),
+AccountNumber1  VARCHAR(550),
+CustomerID1  VARCHAR(550),
+SalesPersonID11  VARCHAR(550),
+TerritoryID1  VARCHAR(550),
+BillToAddressID1  VARCHAR(550),
+ShipToAddressID1  VARCHAR(550),
+ShipMethodID1  VARCHAR(550),
+CreditCardID1  VARCHAR(550),
+CreditCardApprovalCode1  VARCHAR(550),
+CurrencyRateID1  VARCHAR(550),
+SubTotal1  VARCHAR(550),
+TaxAmt1  VARCHAR(550),
+Freight1  VARCHAR(550),
+TotalDue1  VARCHAR(550),
+Comment1  VARCHAR(550),
+rowguid11  VARCHAR(550),
+ModifiedDate1  VARCHAR(550),
+SalesOrderNumber21  VARCHAR(550),
+PurchaseOrderNumber21  VARCHAR(550),
+BusinessEntityID1  VARCHAR(550),
+Name1  VARCHAR(550),
+SalesPersonID21  VARCHAR(550),
+Demographics1  VARCHAR(550),
+rowguid21  VARCHAR(550),
+SalesOrderID21  VARCHAR(550),
+RevisionNumber21  VARCHAR(550),
+SalesOrderNumber31  VARCHAR(550),
+PurchaseOrderNumber31  VARCHAR(550)
+
+
+
+
+
+
+	 )
+	PRIMARY INDEX Sales_2 (BusinessEntityID1);
+
+RECORD 2;
+
+DEFINE
+
+SalesOrderID11 (VARCHAR(550))
+RevisionNumber11 (VARCHAR(550))
+OrderDate1 (VARCHAR(550))
+DueDate1 (VARCHAR(550))
+ShipDate1 (VARCHAR(550))
+Status1 (VARCHAR(550))
+OnlineOrderFlag1 (VARCHAR(550))
+SalesOrderNumber11 (VARCHAR(550))
+PurchaseOrderNumber11 (VARCHAR(550))
+AccountNumber1 (VARCHAR(550))
+CustomerID1 (VARCHAR(550))
+SalesPersonID11 (VARCHAR(550))
+TerritoryID1 (VARCHAR(550))
+BillToAddressID1 (VARCHAR(550))
+ShipToAddressID1 (VARCHAR(550))
+ShipMethodID1 (VARCHAR(550))
+CreditCardID1 (VARCHAR(550))
+CreditCardApprovalCode1 (VARCHAR(550))
+CurrencyRateID1 (VARCHAR(550))
+SubTotal1 (VARCHAR(550))
+TaxAmt1 (VARCHAR(550))
+Freight1 (VARCHAR(550))
+TotalDue1 (VARCHAR(550))
+Comment1 (VARCHAR(550))
+rowguid11 (VARCHAR(550))
+ModifiedDate1 (VARCHAR(550))
+SalesOrderNumber21 (VARCHAR(550))
+PurchaseOrderNumber21 (VARCHAR(550))
+BusinessEntityID1 (VARCHAR(550))
+Name1 (VARCHAR(550))
+SalesPersonID21 (VARCHAR(550))
+Demographics1 (VARCHAR(550))
+rowguid21 (VARCHAR(550))
+SalesOrderID21 (VARCHAR(550))
+RevisionNumber21 (VARCHAR(550))
+SalesOrderNumber31 (VARCHAR(550))
+PurchaseOrderNumber31 (VARCHAR(550))
+
+
+ 	
+
+
+
+
+
+FILE="C:\Users\Arfa Tech\Downloads\PROJECT\Sales\Sales_2.CSV";
+
+begin loading
+Sales_2
+errorfiles
+Sales_2_ERROR1
+,Sales_2_ERROR2
+
+
+CHECKPOINT 400000;
+
+insert into Sales_2 (
+SalesOrderID11,
+RevisionNumber11,
+OrderDate1,
+DueDate1,
+ShipDate1,
+Status1,
+OnlineOrderFlag1,
+SalesOrderNumber11,
+PurchaseOrderNumber11,
+AccountNumber1,
+CustomerID1,
+SalesPersonID11,
+TerritoryID1,
+BillToAddressID1,
+ShipToAddressID1,
+ShipMethodID1,
+CreditCardID1,
+CreditCardApprovalCode1,
+CurrencyRateID1,
+SubTotal1,
+TaxAmt1,
+Freight1,
+TotalDue1,
+Comment1,
+rowguid11,
+ModifiedDate1,
+SalesOrderNumber21,
+PurchaseOrderNumber21,
+BusinessEntityID1,
+Name1,
+SalesPersonID21,
+Demographics1,
+rowguid21,
+SalesOrderID21,
+RevisionNumber21,
+SalesOrderNumber31,
+PurchaseOrderNumber31
+	
+	
+
+
+)
+
+values
+
+(
+:SalesOrderID11,
+:RevisionNumber11,
+:OrderDate1,
+:DueDate1,
+:ShipDate1,
+:Status1,
+:OnlineOrderFlag1,
+:SalesOrderNumber11,
+:PurchaseOrderNumber11,
+:AccountNumber1,
+:CustomerID1,
+:SalesPersonID11,
+:TerritoryID1,
+:BillToAddressID1,
+:ShipToAddressID1,
+:ShipMethodID1,
+:CreditCardID1,
+:CreditCardApprovalCode1,
+:CurrencyRateID1,
+:SubTotal1,
+:TaxAmt1,
+:Freight1,
+:TotalDue1,
+:Comment1,
+:rowguid11,
+:ModifiedDate1,
+:SalesOrderNumber21,
+:PurchaseOrderNumber21,
+:BusinessEntityID1,
+:Name1,
+:SalesPersonID21,
+:Demographics1,
+:rowguid21,
+:SalesOrderID21,
+:RevisionNumber21,
+:SalesOrderNumber31,
+:PurchaseOrderNumber31
+
+	
+
+
+
+);
+
+
+end loading;
+
+.LOGOFF; 

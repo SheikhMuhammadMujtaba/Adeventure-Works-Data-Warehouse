@@ -1,0 +1,93 @@
+
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.178.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Sales_Tax_Rate_Sales;
+DROP TABLE Sales_Tax_Rate_Sales_ERROR1;
+DROP TABLE Sales_Tax_Rate_Sales_ERROR2;
+
+CREATE SET TABLE Sales_Tax_Rate_Sales ,
+     NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+SalesTaxRateID	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StateProvinceID	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TaxType	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TaxRate	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate	VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+
+
+
+
+
+	 )
+	PRIMARY INDEX Sales_Tax_Rate_Sales (SalesTaxRateID);
+
+RECORD 2;
+
+DEFINE
+
+SalesTaxRateID	(VARCHAR (550))
+StateProvinceID	(VARCHAR (550))
+TaxType	(VARCHAR (550))
+TaxRate	(VARCHAR (550))
+Name	(VARCHAR (550))
+rowguid	(VARCHAR (550))
+ModifiedDate	(VARCHAR (550))
+ 	
+
+
+
+
+
+FILE="C:\Users\Arfa Tech\Downloads\PROJECT\Sales\16 SalesTaxRate_Sales.CSV";
+
+begin loading
+Sales_Tax_Rate_Sales
+errorfiles
+Sales_Tax_Rate_Sales_ERROR1
+,Sales_Tax_Rate_Sales_ERROR2
+
+
+CHECKPOINT 400000;
+
+insert into Sales_Tax_Rate_Sales (
+SalesTaxRateID	,
+StateProvinceID	,
+TaxType	,
+TaxRate	,
+Name	,
+rowguid	,
+ModifiedDate	
+
+
+
+)
+
+values
+
+(
+:	SalesTaxRateID	,
+:	StateProvinceID	,
+:	TaxType	,
+:	TaxRate	,
+:	Name	,
+:	rowguid	,
+:	ModifiedDate	
+
+
+
+);
+
+
+end loading;
+
+.LOGOFF; 

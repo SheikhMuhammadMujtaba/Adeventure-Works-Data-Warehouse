@@ -1,0 +1,151 @@
+
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.178.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Sales_3;
+DROP TABLE Sales_3_ERROR1;
+DROP TABLE Sales_3_ERROR2;
+
+CREATE SET TABLE Sales_3 ,
+     NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+BusinessEntityID1  VARCHAR(550),
+SalesOrderID11  VARCHAR(550),
+SalesOrderDetailID11  VARCHAR(550),
+CarrierTrackingNumber11  VARCHAR(550),
+OrderQty11  VARCHAR(550),
+ProductID11  VARCHAR(550),
+SpecialOfferID11  VARCHAR(550),
+UnitPrice11  VARCHAR(550),
+UnitPriceDiscount11  VARCHAR(550),
+LineTotal1  VARCHAR(550),
+rowguid1  VARCHAR(550),
+ModifiedDate1  VARCHAR(550),
+ProductID21  VARCHAR(550),
+SpecialOfferID21  VARCHAR(550),
+UnitPrice21  VARCHAR(550),
+UnitPriceDiscount21  VARCHAR(550),
+SalesOrderID21  VARCHAR(550),
+SalesOrderDetailID21  VARCHAR(550),
+CarrierTrackingNumber21  VARCHAR(550),
+OrderQty21  VARCHAR(550)
+
+
+
+
+
+
+
+	 )
+	PRIMARY INDEX Sales_3 (BusinessEntityID1);
+
+RECORD 2;
+
+DEFINE
+
+BusinessEntityID1 (VARCHAR(550))
+SalesOrderID11 (VARCHAR(550))
+SalesOrderDetailID11 (VARCHAR(550))
+CarrierTrackingNumber11 (VARCHAR(550))
+OrderQty11 (VARCHAR(550))
+ProductID11 (VARCHAR(550))
+SpecialOfferID11 (VARCHAR(550))
+UnitPrice11 (VARCHAR(550))
+UnitPriceDiscount11 (VARCHAR(550))
+LineTotal1 (VARCHAR(550))
+rowguid1 (VARCHAR(550))
+ModifiedDate1 (VARCHAR(550))
+ProductID21 (VARCHAR(550))
+SpecialOfferID21 (VARCHAR(550))
+UnitPrice21 (VARCHAR(550))
+UnitPriceDiscount21 (VARCHAR(550))
+SalesOrderID21 (VARCHAR(550))
+SalesOrderDetailID21 (VARCHAR(550))
+CarrierTrackingNumber21 (VARCHAR(550))
+OrderQty21 (VARCHAR(550))
+
+
+ 	
+
+
+
+
+
+FILE="C:\Users\Arfa Tech\Downloads\PROJECT\Sales\Sales_3.CSV";
+
+begin loading
+Sales_3
+errorfiles
+Sales_3_ERROR1
+,Sales_3_ERROR2
+
+
+CHECKPOINT 400000;
+
+insert into Sales_3 (
+BusinessEntityID1,
+SalesOrderID11,
+SalesOrderDetailID11,
+CarrierTrackingNumber11,
+OrderQty11,
+ProductID11,
+SpecialOfferID11,
+UnitPrice11,
+UnitPriceDiscount11,
+LineTotal1,
+rowguid1,
+ModifiedDate1,
+ProductID21,
+SpecialOfferID21,
+UnitPrice21,
+UnitPriceDiscount21,
+SalesOrderID21,
+SalesOrderDetailID21,
+CarrierTrackingNumber21,
+OrderQty21
+	
+	
+
+
+)
+
+values
+
+(
+:BusinessEntityID1,
+:SalesOrderID11,
+:SalesOrderDetailID11,
+:CarrierTrackingNumber11,
+:OrderQty11,
+:ProductID11,
+:SpecialOfferID11,
+:UnitPrice11,
+:UnitPriceDiscount11,
+:LineTotal1,
+:rowguid1,
+:ModifiedDate1,
+:ProductID21,
+:SpecialOfferID21,
+:UnitPrice21,
+:UnitPriceDiscount21,
+:SalesOrderID21,
+:SalesOrderDetailID21,
+:CarrierTrackingNumber21,
+:OrderQty21
+
+	
+
+
+
+);
+
+
+end loading;
+
+.LOGOFF; 
